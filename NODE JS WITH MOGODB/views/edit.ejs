@@ -1,0 +1,12 @@
+<%- include('includes/header.ejs',{ title: "Edit Chat" }) %>
+<body>
+    <main class="edit">
+        <h1 class="title">Edit your chat</h1>
+        <h3 class="to">This chat was sent from <%= chat.from %> to <%= chat.to %></h3>
+        <form action="http://localhost:3000/chats/<%= chat._id %>?_method=PUT" method="POST">
+            <textarea class="msg" name="msg"><%= chat.msg %></textarea>
+            <button  class="btn" type="submit">Edit</button>
+        </form>
+    </main>
+</body>
+</html>

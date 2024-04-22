@@ -1,0 +1,23 @@
+<%- include('./includes/header.ejs') %>
+<body>
+    <form 
+        class="new"
+        action="/posts"
+        method="post"
+    >
+        <input 
+            type="text" 
+            name="username" 
+            id="myName" 
+            placeholder="Enter Username"
+        >
+        <textarea 
+            name="content" 
+            id="myContent" 
+            rows="5"
+            placeholder="Write your Post"
+        ></textarea>
+        <button type="submit">Create Post</button>
+    </form>
+</body>
+</html>

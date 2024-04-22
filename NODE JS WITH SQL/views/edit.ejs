@@ -1,0 +1,12 @@
+<%- include('includes/header.ejs',{ 'title': 'Edit' }) %>
+<body>
+    <main>
+        <h2>You're about to edit this User: <%= email %></h2>
+        <form action="/users/<%= userId %>?_method=PATCH" method="post">
+            <textarea name="username" rows="5"><%= username %></textarea>
+            <input type="password" name="password" placeholder="Enter your password">
+            <button>Edit</button>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,117 @@
+
+// mongodb
+data:
+    javascript object notation in form of key-val pair
+document: BSON docs
+    mongo stores data in form of document
+collection:
+    mongo stores a documents in a collection
+dbs:
+    mongo stores collections in a dbs
+BSON: 
+    Binary JSON is converted from JSON
+
+mongod / mongosh
+db
+use college // to create and use a new db college
+show dbs / show collections
+help
+exit or quit
+
+db.student.insertOne({ name: 'adam',age: 19,marks: 93 }) //automatic
+db.student.insertMany([{ name: 'bam',age: 20 },{ name: 'carry',creator: 'on youtube' }])
+
+db.student.find()
+db.student.findOne({ $or: [{ marks: { $gt: 75 } } ,{ city: { $in: [ "Delhi" ,"Mumbai" ]} }] }) 
+// arrOfObj = arrOfDocuments = collections ,actual document - original - collections
+
+db.student.updateOne(<filter> ,<update> ,<options>) - addFields ,project ,unset ,replaceRoot ,replaceWith
+db.student.updateOne( {name: 'adam'} ,{$set: {marks: 99}} )
+db.student.updateMany( {name: 'adam'} ,{$set: {marks: 99}} )
+db.student.replaceOne( {name: 'bob'} ,{name: 'shradha' ,marks: 20 ,state: 'haryana} ) -> many
+
+db.student.insertOne({ name: 'farah' ,performance: {marks: 90 ,grade: 'A'}})
+db.student.findOne({ "performance.marks":90 })
+
+db.collection.deleteOne(<filter> ,<options>)        
+db.student.deleteMany({ state: 'haryana })
+
+db.student.deleteMany({})
+db.dropDatabase()
+
+operator($) : eq ,ne ,gt ,gte ,lt ,lte ,in ,nin ,and ,not ,nor ,or ,exists ,type ,expr ,regex
+
+const mongoose = require('mongoose');  // odm library
+
+(async () => (
+    await mongoose.connect('mongodb://127.0.0.1:27017/test')
+))()
+.then(res => console.log('Connect with test connection'))
+.catch(err => console.error('Error occurs for connecting'));
+
+const userSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    age: Number
+});
+
+const bookSchema = new mongoose.Schema({
+    titlle: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: String
+    },
+    price: {
+        type: Number,
+        min: [1,"Please enter a valid price"]
+    },
+    discount: {
+        type: Number,
+        default: 0
+    },
+    category: {
+        type: String,
+        enum: ["fiction", "non-fiction"]
+    },
+    genre: [String]
+});
+
+const Book = mongoose.model("Book",bookSchema);
+Book.findByIdAndUpdate(
+    "660fd5e56285e718cc4d45e3",
+    { price: -100 },
+    { runValidators: true }
+).then(res => console.log(res))
+.catch(err => console.log(err.errors.price.properties.message));
+
+const User = mongoose.model('User' ,userSchema); // users
+const User1 = new User({name: 'John', email: 'jonh@gmail.com',age: 19});
+const User2 = new User({name: 'brian', email: 'brian@gmail.com',age: 21});
+User1.save().then(data => console.log(data)).catch(err => console.error('Error occurs'));
+User2.save().then(data => console.log(data)).catch(err => console.error('Error occurs'));
+User.insertMany([
+    {name: 'bam', email: 'bam@gmail.com', age: 33},
+    {name: 'jay', email: 'jay@gmail.com', age:32}
+]);
+
+QOM not promise
+User.find().then(data => console.log(data));
+User.find({ age: { $gte: 32 }}).then(data => console.log(data));
+User.findOne(_id:'660fd5e56285e718cc4d45e3').then(data => console.log(data));
+User.findById('660fd5e56285e718cc4d45e3').then(data => console.log(data));
+
+User.updateOne({name: 'jay'},{age: 30}).then(data => console.log(data));
+User.updateMany({age:{$gte: 30}},{age:45}).then(data => console.log(data));
+
+User.findOneAndUpdate({name: 'jay'},{age: 50},{new:true}).then(data => console.log(data));
+User.findByIdAndUpdate('660fd5e56285e718cc4d45e3',{age: 55}).then(data => console.log(data));
+
+User.deleteOne({name:'brian'}).then(data => console.log(data));
+User.deleteMany({age:{$gte: 30}}).then(data => console.log(data));
+
+User.findOneAndDelete({name:'John'}).then(data => console.log(data));
+User.findByIdAndDelete('660fd5e56285e718cc4d45e0').then(data => console.log(data));
+
+    

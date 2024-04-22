@@ -1,0 +1,16 @@
+{
+    "posts": [
+        {
+            "username": "Apna College",
+            "content": "I Love Codding"
+        },
+        {
+            "username": "Shradha Khapra",
+            "content": "Hard work is important to achieve Success"
+        },
+        {
+            "username": "Rahul Kumar",
+            "content": "I got selected for my first Internship"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+<%- include('includes/header.ejs',{ 'title': 'See Users' }) %>
+<body>
+    <main>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>email</th>
+                <th>username</th>
+                <th>edit</th>
+            </tr>
+            <% for({ userId,email,username } of users){ %>
+                <tr>
+                    <td><%= userId %></td>
+                    <td><%= email %></td>
+                    <td><%= username %></td>
+                    <td>
+                        <form method="get" action="users/<%= userId %>/edit">
+                            <button>Edit Username</button>
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+        </table>
+    </main>
+</body>
+</html>

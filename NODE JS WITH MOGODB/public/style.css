@@ -1,0 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+* ,*::before ,*::after{
+    box-sizing: border-box;
+}
+body{
+    min-height: 100vh;
+    font-size: clamp(1.15rem,2vw,1.125rem);
+    line-height: 1.6;
+    font-family: system-ui;
+    background: linear-gradient(-45deg,#3CA8E8,#2931B3);
+}
+main{
+    width: min(70ch,calc(100% - 4rem));
+    margin-inline: auto;
+    padding: 0 0 10rem 0;
+    clear: both;
+}
+form{
+    clear: both;
+    grid-auto-flow: row;
+    display: grid;
+    &>input{
+        border: none;
+        background: transparent;
+        padding: 1rem;
+        border: 2px solid lightblue;
+        color: lightblue;
+        font-weight: bold;
+        border-radius: 1rem;
+    }
+    &>input::placeholder{
+        color: white;
+        font-size: clamp(1.15rem,2vw,1.125rem);
+        line-height: 1.6;
+        font-family: system-ui;
+    }
+    &>*:focus{
+        outline: none;
+    }
+    &>*{
+        font-size: clamp(1.15rem,2vw,1.125rem);
+        line-height: 1.6;
+        font-family: system-ui;
+    }
+}
+.title{
+    margin: 2rem 1rem;
+    color: royalblue;
+}
+.chat{
+    border-bottom: 2px solid lightblue;
+    /* border-radius: 1rem; */
+    padding: 1rem;
+    margin: 1rem;
+    overflow: auto;
+}
+.from,.msg,.to{
+    margin: 1rem 0;
+}
+.msg{
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: lightblue;
+    text-decoration: none;
+    clear: both;
+}
+.btn{
+    /* float: right; */
+    font-weight: bolder;
+    border-radius: 1rem;
+    padding: 1rem;
+    color: lightblue;
+    border: 2px solid lightblue;
+    text-decoration: none;
+    width: fit-content;
+    background: transparent;
+}
+.from,.to{
+    color: #f2f2f2;
+    float: right;
+} 
+.date{
+    color: white;
+    clear: both;
+    margin: 0 1rem;
+}
+.btns{
+    /* float: right; */
+    margin-left: auto;
+    display: flex;
+    width: fit-content;
+}
+.btn2{
+    clear: both;
+    text-decoration: none;
+    color: linear-gradient(-45deg,#3CA8E8,#2931B3);
+    background-color: lightblue;
+    padding: .5rem 2rem;
+    border-radius: .5rem;
+    font-weight: bold;
+    border: none;
+    margin: 0 2rem 0 0;
+}
+.opo{
+    color: lightblue;
+    border: 2px solid lightblue;
+    background-color: transparent;
+}
+.chats{
+    margin-bottom: 5rem;
+}

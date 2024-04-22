@@ -1,0 +1,23 @@
+<%- include('includes/header.ejs',{ title: 'Whatsapp' }) %>
+<body>
+    <main>
+        <h1 class="title">All Chats!</h1>
+        <div class="chats">
+            <% for(let { from,to,created_at,msg,_id } of chats){ %>
+                <div class="chat">
+                    <h3 class="from">From: <%= from %></h3>
+                    <p class="msg"><%= msg %></p>
+                    <h3 class="to">Received by <%= to %></h3>
+                </div>
+                <p class="date"><%= created_at.toString().split(' ')[4] %></p>
+                <p class="date"><%= created_at.toDateString() %></p>
+                <div class="btns">
+                    <a href="http://localhost:3000/chats/<%= _id %>/edit" class="btn2">Edit</a>
+                    <a href="http://localhost:3000/chats/<%= _id %>" class="btn2 opo">Delete</a>
+                </div>
+            <% } %>
+        </div>
+        <a href="http://localhost:3000/chats/new" class="btn">Create Chat</a>
+    </main>
+</body>
+</html>
